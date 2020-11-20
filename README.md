@@ -62,7 +62,7 @@ faucibus. Aliquam gravida commodo semper. Vestibulum ante ipsum primis in faucib
 
 ### Styling spans
 
-Styles can also be applied to spans of text. Styles meant to be applied to paragraphs 
+Styles can also be applied to spans of text. Styles meant to be applied to spans of text
 are denoted by the letter s in a styling section. If a span style has two names, then
 the first one will be used to open the span, and the second to close it.
 
