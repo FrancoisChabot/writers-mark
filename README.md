@@ -1,5 +1,7 @@
 # Writer's Mark
 
+[![npm](https://badgen.net/npm/v/writers-mark)](https://www.npmjs.com/package/writers-mark)
+[![install size](https://packagephobia.com/badge?p=writers-mark)](https://packagephobia.com/result?p=writers-mark)
 [![github actions](https://github.com/FrancoisChabot/writers-mark/workflows/Tests/badge.svg)](https://github.com/FrancoisChabot/writers-mark/actions)
 
 Easy, safe and flexible markup for user-generated content.
