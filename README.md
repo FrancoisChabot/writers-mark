@@ -1,5 +1,7 @@
 # Writer's Mark
 
+[![github actions](https://github.com/FrancoisChabot/writers-mark/workflows/Tests/badge.svg)](https://github.com/FrancoisChabot/writers-mark/actions)
+
 Easy, safe and flexible markup for user-generated content.
 
 The main objective is to thread the needle between the simplicity of markdown and the power of HTML/CSS, while providing security guarantees so that user-generated content can be both safe and flexible at the same time. 
