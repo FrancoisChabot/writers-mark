@@ -1,14 +1,14 @@
 import { Options } from './options';
 import { Style } from './style';
 
-type Block = (string | SpanSection)[];
+export type Block = (string | SpanSection)[];
 
-interface SpanSection {
+export interface SpanSection {
   contents: Block;
   style: string;
 }
 
-interface Paragraph {
+export interface Paragraph {
   contents: Block;
   style?: string;
 }

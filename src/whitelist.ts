@@ -1,3 +1,4 @@
+/** Straigforward TRIE node. */
 interface Node {
   wildcard: boolean;
   terminator: boolean;
