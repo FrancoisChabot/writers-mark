@@ -1,4 +1,3 @@
-import { Options } from './options';
 import { Style } from './style';
 
 export type Block = (string | SpanSection)[];
@@ -10,7 +9,7 @@ export interface SpanSection {
 
 export interface Paragraph {
   contents: Block;
-  style?: string;
+  styles?: string[];
 }
 
 export interface AST {
@@ -79,9 +78,11 @@ export const isValid = (ast: AST, style: Style): boolean => {
   };
 
   for (const p of ast.paragraphs) {
-    if (p.style) {
-      if (!style.paragraph[p.style]) {
-        return false;
+    if (p.styles !== undefined) {
+      for (const s of p.styles) {
+        if (!style.paragraph[s]) {
+          return false;
+        }
       }
     }
 
@@ -92,49 +93,72 @@ export const isValid = (ast: AST, style: Style): boolean => {
   return true;
 };
 
-/** Compiles a raw string into an AST according to a given style
+/** Splits raw text into a sequence of paragraphs.
  * @param data The raw string to interpret.
- * @param style The style to apply.
  */
-export const compile = (data: string, style: Style, options?: Options): AST => {
+export function* splitParagraphs(data: string) {
   const lines = data.split('\n');
-  const paragraphs: Paragraph[] = [];
-
-  let currentTxt: string = '';
-  let currentStyle: string = '';
-  let starting: boolean = true;
-
-  const commitParagraph = () => {
-    if (currentTxt !== '') {
-      paragraphs.push({
-        contents: applySpanStyles(currentTxt, style),
-        style: currentStyle,
-      });
-    }
-
-    currentTxt = '';
-    currentStyle = '';
-    starting = true;
-  };
+  let current: string[] = [];
 
   for (let line of lines) {
     line = line.trim();
     if (line === '') {
-      commitParagraph();
-    } else {
-      if (starting && style.paragraph[line]) {
-        currentStyle = line;
-      } else {
-        if (currentTxt !== '') {
-          currentTxt += ' ';
-        }
-        currentTxt += line;
+      if (current.length > 0) {
+        yield current;
+        current = [];
       }
+    } else {
+      current.push(line);
+    }
+  }
+
+  if (current.length > 0) {
+    yield current;
+    current = [];
+  }
+}
+
+/** Converts a raw paragraph into the final AST form.
+ * @param data The paragraph data as returned from splitParagraphs()
+ */
+export const compileParagraph = (data: string[], style: Style): Paragraph => {
+  let starting = true;
+
+  const styles: string[] = [];
+  let text: string = '';
+
+  for (const line of data) {
+    if (starting && style.paragraph[line]) {
+      styles.push(line);
+    } else {
+      if (text !== '') {
+        text += ' ';
+      }
+      text += line;
       starting = false;
     }
   }
 
-  commitParagraph();
+  const result: Paragraph = {
+    contents: applySpanStyles(text, style),
+  };
+  if (styles.length > 0) {
+    result.styles = styles;
+  }
+  return result;
+};
 
-  return { paragraphs };
+/** Compiles a raw string into an AST according to a given style
+ * @param data The raw string to interpret.
+ * @param style The style to apply.
+ */
+export const compile = (data: string, style: Style): AST => {
+  const paragraphs: Paragraph[] = [];
+  for (const rawP of splitParagraphs(data)) {
+    paragraphs.push(compileParagraph(rawP, style));
+  }
+
+  return {
+    paragraphs,
+  };
 };
