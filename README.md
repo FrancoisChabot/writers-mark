@@ -106,7 +106,14 @@ However, if the library's default settings are used, the following properties ca
 
 ## Getting started for implementing:
 
-### Absolute basics
+
+### Installation
+
+```
+npm install writers-mark
+```
+
+### Usage
 ```
 import {compileStyle, compileAst, isStyleValid, isAstValid} from 'writers-mark';
 
@@ -131,4 +138,4 @@ if(isStyleValid(recovered_style) && isAstValid(recovered_style, recovered_ast)) 
 ```
 
 
-Rendering the ast is not within the scope of this module, please see [writers-mark-dom]() or [writers-mark-react]() for that.
+Rendering the ast is not within the scope of this module, please see [writers-mark-dom](https://github.com/FrancoisChabot/writers-mark-dom) or [writers-mark-react]() for that.
