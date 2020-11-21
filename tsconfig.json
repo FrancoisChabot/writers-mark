@@ -6,7 +6,7 @@
     "outDir": "./lib",
     "strict": true,
     "lib": [
-      "ES2015"
+      "es2018"
     ]
   },
   "include": ["src",],
