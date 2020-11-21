@@ -41,6 +41,11 @@ test('Parse empty string', (t) => {
   t.deepEqual(style.paragraph['default'].props, {});
 });
 
+test('Blank options whitelist', (t) => {
+  const style = Style.compile('p aaa {color: red;}', {});
+  t.deepEqual(style.paragraph['aaa'].props, { color: 'red' });
+});
+
 test('Parse empty p rule', (t) => {
   const style = Style.compile('p aaa {}', emptyOpts);
 

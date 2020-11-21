@@ -1,5 +1,5 @@
-import { compile as compileStyle, isValid as isStyleValid } from './style';
-import { compile as compileAst, isValid as isAstValid } from './ast';
+import { compile as compileStyle, isValid as isStyleValid, Style } from './style';
+import { compile as compileAst, isValid as isAstValid, AST } from './ast';
 import { Options, defaultPProps, defaultSpanProps } from './options';
 
-export { compileAst, isAstValid, compileStyle, isStyleValid, Options, defaultPProps, defaultSpanProps };
+export { AST, compileAst, isAstValid, Style, compileStyle, isStyleValid, Options, defaultPProps, defaultSpanProps };

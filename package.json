@@ -1,7 +1,7 @@
 {
   "name": "writers-mark",
   "homepage": "https://github.com/FrancoisChabot/writers-mark#readme",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Easy, safe and flexible markup for user-generated content.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -39,8 +39,8 @@
     ]
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/FrancoisChabot/writers-mark.git"
+    "type": "git",
+    "url": "https://github.com/FrancoisChabot/writers-mark.git"
   },
   "author": "Francois Chabot",
   "license": "ISC"

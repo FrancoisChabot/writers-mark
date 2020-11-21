@@ -8,8 +8,8 @@ export const defaultParagraphRule: string = 'default';
 
 /** Set of options that can be passed to Writers-Mark */
 export interface Options {
-  pProps: string[];
-  spanProps: string[];
+  pProps?: string[];
+  spanProps?: string[];
   classPrefix?: string;
   defaultPRule?: string;
 }
@@ -29,8 +29,8 @@ export interface InternalOptions {
 
 export const makeInternalOptions = (opts: Options): InternalOptions => {
   return {
-    pProps: new Whitelist(opts.pProps),
-    spanProps: new Whitelist(opts.spanProps),
+    pProps: new Whitelist(opts.pProps || defaultPProps),
+    spanProps: new Whitelist(opts.spanProps || defaultSpanProps),
     classPrefix: opts.classPrefix || defaultClassPrefix,
     defaultPRule: opts.defaultPRule || defaultParagraphRule,
   };
