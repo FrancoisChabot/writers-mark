@@ -2,6 +2,8 @@ import * as style from '../style';
 import test from 'ava';
 import { Options } from '../options';
 
+/* tslint:disable:no-string-literal */
+
 const opts: Options = {
   pProps: ['aaa'],
   spanProps: ['bbb'],

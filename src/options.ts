@@ -10,7 +10,6 @@ export const defaultParagraphRule: string = 'default';
 export interface Options {
   pProps?: string[];
   spanProps?: string[];
-  classPrefix?: string;
   defaultPRule?: string;
 }
 
@@ -23,7 +22,6 @@ export const defaultOptions: Options = {
 export interface InternalOptions {
   pProps: Whitelist;
   spanProps: Whitelist;
-  classPrefix: string;
   defaultPRule: string;
 }
 
@@ -31,7 +29,6 @@ export const makeInternalOptions = (opts: Options): InternalOptions => {
   return {
     pProps: new Whitelist(opts.pProps || defaultPProps),
     spanProps: new Whitelist(opts.spanProps || defaultSpanProps),
-    classPrefix: opts.classPrefix || defaultClassPrefix,
     defaultPRule: opts.defaultPRule || defaultParagraphRule,
   };
 };

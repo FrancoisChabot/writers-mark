@@ -30,7 +30,7 @@ test('Paragraph style', (t) => {
         paragraphs: [
           {
             contents: ['this is some text'],
-            style: 'aaa',
+            styles: ['aaa'],
           },
         ],
       },
@@ -44,7 +44,7 @@ test('Paragraph style', (t) => {
         paragraphs: [
           {
             contents: ['this is some text'],
-            style: 'bbb',
+            styles: ['bbb'],
           },
         ],
       },

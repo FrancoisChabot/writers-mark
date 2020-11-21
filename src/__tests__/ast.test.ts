@@ -10,14 +10,15 @@ test('Breaks down paragraphs', (t) => {
   t.is(ast.compile('a simple one line', testStyle).paragraphs.length, 1);
   t.is(ast.compile('\na simple one line', testStyle).paragraphs.length, 1);
   t.is(ast.compile('\n\na simple one line', testStyle).paragraphs.length, 1);
+  t.is(ast.compile('a simple one line\n\n', testStyle).paragraphs.length, 1);
   t.is(ast.compile('a line\nanother line', testStyle).paragraphs.length, 1);
   t.is(ast.compile('a line\n\nanother line', testStyle).paragraphs.length, 2);
   t.is(ast.compile('a line\n\n\nanother line', testStyle).paragraphs.length, 2);
 });
 
 test('Apply paragraph style', (t) => {
-  t.is(ast.compile('aaa\na simple one line', testStyle).paragraphs[0].style, 'aaa');
-  t.is(ast.compile('a simple one line\n\naaa\nanother line', testStyle).paragraphs[1].style, 'aaa');
+  t.deepEqual(ast.compile('aaa\na simple one line', testStyle).paragraphs[0].styles, ['aaa']);
+  t.deepEqual(ast.compile('a simple one line\n\naaa\nanother line', testStyle).paragraphs[1].styles, ['aaa']);
 });
 
 test('Simple span rule', (t) => {

@@ -15,7 +15,6 @@ test('Basic style parsing', (t) => {
 });
 
 test('Safety net', (t) => {
-  const options = makeInternalOptions({ spanProps: [], pProps: [] });
   const allowValue = Style.__get__('allowValue');
   t.false(allowValue('color', 'r\\65 d'));
   t.false(allowValue('color', 'url("http://example.com")'));
@@ -93,7 +92,6 @@ test('Does not parse non-whitelisted property', (t) => {
 const opts: Options = {
   pProps: ['color', 'font', 'margin*', 'font-weight'],
   spanProps: ['body'],
-  classPrefix: 'test_',
 };
 
 test('Parses a whitelisted property', (t) => {
